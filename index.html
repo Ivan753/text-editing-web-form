@@ -11,17 +11,22 @@ WebForm = {
     
     container: null,        // containing form
     richTextField: null,    // iframe
+    iframe_id: null,        // iframe id
     textArea: null,         // textarea
     
     // arguments: id name id
-    init: function(cont, iframe, ta){
+    init: function(cont, iframe_id, ta){
         
         this.container = document.querySelector(cont);
+        this.iframe_id = document.querySelector(iframe_id);
         
-        this.richTextField = iframe;
+        
         this.textArea = document.querySelector(ta);
         
-        //this.richTextField.setAttribute("name", "richTextField");
+        this.iframe_id.setAttribute("name", "richTextField");
+        
+        this.richTextField = richTextField;
+        
         this.textArea.setAttribute("name", "myTextArea");
         
         this.textArea.display = "none";
@@ -121,6 +126,23 @@ WebForm = {
     // importamt before shipping
     prepationSubmit: function(form){
         this.textArea.value = this.richTextField.document.body.innerHTML;
+    },
+    
+    change: function(n){
+    
+        switch(n){
+            case 1:
+                this.prepationSubmit();
+                this.iframe_id.style.display = "none";
+                this.textArea.style.display = "block";
+            break;
+            case 2:
+                this.richTextField.document.body.innerHTML = this.textArea.value;
+                this.iframe_id.style.display = "block";
+                this.textArea.style.display = "none";
+            break;
+        }
+        
     }
 
 }
@@ -163,6 +185,9 @@ WebForm = {
             <input type="button" value="H4" onclick = "WebForm.h(4)">
             <input type="button" value="H5" onclick = "WebForm.h(5)">
             <input type="button" value="H6" onclick = "WebForm.h(6)">
+            <br>
+            <input type="button" value="Text" onclick = "WebForm.change(2)">
+            <input type="button" value="HTML" onclick = "WebForm.change(1)">
         </div>
 
         <textarea style="display:none;" name="myTextArea" id="myTextArea"></textarea>
@@ -170,6 +195,6 @@ WebForm = {
 
 
     </form>
-<script>WebForm.init("#web_form_cont", richTextField, "#myTextArea");</script>
+<script>WebForm.init("#web_form_cont", "#richTextField", "#myTextArea");</script>
 </body>
 </html>
