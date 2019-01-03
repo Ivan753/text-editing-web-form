@@ -1,0 +1,75 @@
+<html>
+<head>
+    <title>Text Editing Web Form</title>
+
+<script>
+
+
+// create singlton
+
+WebForm = {
+    
+    container: null,        // containing form
+    richTextField: null,    // iframe
+    textArea: null,         // textarea
+    
+    init: function(cont, iframe, ta){
+        
+        this.container = document.querySelector();
+        
+        this.richTextField = document.querySelector(iframe);
+        this.textArea = document.querySelector(ta);
+        
+        this.richTextField.setAttribute("name", "richTextField");
+        this.textArea.setAttribute("name", "myTextArea");
+        
+        this.textArea.display = "none";
+        
+        this.richTextField.document.designMode = 'On';
+        
+    }
+    
+}
+
+</script>    
+
+</head>
+<body>
+
+    <form action="#" name="myform" id="myform" method="POST">
+    
+    <div id = "web_form">
+        <div style="padding:8px; width:700px;">
+            <input type="button" value="B"> 
+            <input type="button" value="U">
+            <input type="button" value="I">
+            <input type="button" value="Text Size">
+            <input type="button" value="Text Color">
+            <input type="button" value="HR">
+            <input type="button" value="UL">
+            <input type="button" value="OL">
+            <input type="button" value="Remove format">
+            <input type="button" value="Link">
+            <input type="button" value="UnLink">
+            <input type="button" value="Image">
+            <br>
+            <input type="button" value="Center">
+            <input type="button" value="Left">
+            <input type="button" value="Right">
+            <br>
+            <input type="button" value="H1">
+            <input type="button" value="H2">
+            <input type="button" value="H3">
+            <input type="button" value="H4">
+            <input type="button" value="H5">
+            <input type="button" value="H6">
+        </div>
+
+        <textarea style="display:none;" name="myTextArea" id="myTextArea"></textarea>
+        <iframe name="richTextField" id="richTextField" style="border:#000000 1px solid; width:700px; height:300px;"></iframe>
+    </div>
+
+    </form>
+
+</body>
+</html>
