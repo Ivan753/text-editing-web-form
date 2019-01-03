@@ -1,200 +1,49 @@
 <html>
 <head>
     <title>Text Editing Web Form</title>
-
-<script>
-
-
-// create singlton
-
-WebForm = {
-    
-    container: null,        // containing form
-    richTextField: null,    // iframe
-    iframe_id: null,        // iframe id
-    textArea: null,         // textarea
-    
-    // arguments: id name id
-    init: function(cont, iframe_id, ta){
-        
-        this.container = document.querySelector(cont);
-        this.iframe_id = document.querySelector(iframe_id);
-        
-        
-        this.textArea = document.querySelector(ta);
-        
-        this.iframe_id.setAttribute("name", "richTextField");
-        
-        this.richTextField = richTextField;
-        
-        this.textArea.setAttribute("name", "myTextArea");
-        
-        this.textArea.display = "none";
-        
-        this.richTextField.document.designMode = 'On';
-        
-    },
-
-    bold: function(){
-        this.richTextField.document.execCommand('bold', false, null);
-    },
-    
-    underline: function(){
-        this.richTextField.document.execCommand('underline', false, null);
-    },
-    
-    strike: function(){
-        this.richTextField.document.execCommand('strikeThrough', false, null);
-    },
-    
-    subscript: function(){
-        this.richTextField.document.execCommand('subscript', false, null);
-    },
-    
-    superscript: function(){
-        this.richTextField.document.execCommand('superscript', false, null);
-    },
-
-    italic: function(){
-        this.richTextField.document.execCommand('italic', false, null); 
-    },
-
-    fontSize: function(){
-        let size = prompt('Enter a size 1 - 7', '');
-        this.richTextField.document.execCommand('FontSize', false, size);
-    },
-
-    foreColor: function(){
-        let color = prompt('Define a basic color or apply a hexadecimal color code for advanced colors:', '');
-        this.richTextField.document.execCommand('ForeColor', false, color);
-    },
-
-    horizontalRule: function(){
-        this.richTextField.document.execCommand('inserthorizontalrule', false, null);
-    },
-
-    justifyCenter: function(){
-        this.richTextField.document.execCommand('justifyCenter', false, null);
-    },
-    
-    justifyFull: function(){
-        this.richTextField.document.execCommand('justifyFull', false, null);
-    },
-    
-    justifyLeft: function(){
-        this.richTextField.document.execCommand('justifyLeft', false, null);
-    },
-    
-    justifyRight: function(){
-        this.richTextField.document.execCommand('justifyRight', false, null);
-    },
-
-    removeFormat: function(){
-        this.richTextField.document.execCommand('removeFormat', false, null);
-    },
-
-    unorderedList: function(){
-        this.richTextField.document.execCommand("InsertOrderedList", false, "newOL");
-    },
-    
-    orderedList: function(){
-        this.richTextField.document.execCommand("InsertUnorderedList", false, "newUL");
-    },
-    
-    link: function(){
-        let linkURL = prompt("Enter the URL for this link:", "http://"); 
-        this.richTextField.document.execCommand("CreateLink", false, linkURL);
-    },
-
-    unLink: function(){
-        this.richTextField.document.execCommand("Unlink", false, null);
-    },
-    
-    h: function(n){
-        this.richTextField.document.execCommand("formatBlock", false, "H"+n);
-    },
-
-    image(){
-        let imgSrc = prompt('Enter image location', '');
-        if(imgSrc != null){
-            this.richTextField.document.execCommand('insertimage', false, imgSrc); 
-        }else{
-            alert("Enter image location");
-        }
-    },
-    
-    // importamt before shipping
-    prepationSubmit: function(form){
-        this.textArea.value = this.richTextField.document.body.innerHTML;
-    },
-    
-    change: function(n){
-    
-        switch(n){
-            case 1:
-                this.prepationSubmit();
-                this.iframe_id.style.display = "none";
-                this.textArea.style.display = "block";
-            break;
-            case 2:
-                this.richTextField.document.body.innerHTML = this.textArea.value;
-                this.iframe_id.style.display = "block";
-                this.textArea.style.display = "none";
-            break;
-        }
-        
-    }
-
-}
-
-
-
-</script>    
-
+    <script src = "text-editing.js"></script>
 </head>
 <body>
 
     <form action="#" name="myform" id="myform" method="POST">
     
-        <div style="padding:8px; width:700px;" id = "web_form_cont">
-            <input type="button" value="B" onclick = "WebForm.bold()"> 
-            <input type="button" value="U" onclick = "WebForm.underline()">
-            <input type="button" value="I" onclick = "WebForm.italic()">
-            <input type="button" value="Strike" onclick = "WebForm.strike()">
-            
-            <input type="button" value="Sub" onclick = "WebForm.subscript()">
-            <input type="button" value="Sup" onclick = "WebForm.superscript()">
-            
-            <input type="button" value="Text Size" onclick = "WebForm.fontSize()">
-            <input type="button" value="Text Color" onclick = "WebForm.foreColor()">
-            <input type="button" value="HR" onclick = "WebForm.horizontalRule()">
-            <input type="button" value="UL" onclick = "WebForm.unorderedList()">
-            <input type="button" value="OL" onclick = "WebForm.orderedList()">
-            <input type="button" value="Remove format" onclick = "WebForm.removeFormat()">
-            <input type="button" value="Link" onclick = "WebForm.link()">
-            <input type="button" value="UnLink" onclick = "WebForm.unLink()">
-            <input type="button" value="Image" onclick = "WebForm.image()">
-            <br>
-            <input type="button" value="Center" onclick = "WebForm.justifyCenter()">
-            <input type="button" value="Left" onclick = "WebForm.justifyLeft()">
-            <input type="button" value="Right" onclick = "WebForm.justifyRight()">
-            <br>
-            <input type="button" value="H1" onclick = "WebForm.h(1)">
-            <input type="button" value="H2" onclick = "WebForm.h(2)">
-            <input type="button" value="H3" onclick = "WebForm.h(3)">
-            <input type="button" value="H4" onclick = "WebForm.h(4)">
-            <input type="button" value="H5" onclick = "WebForm.h(5)">
-            <input type="button" value="H6" onclick = "WebForm.h(6)">
-            <br>
-            <input type="button" value="Text" onclick = "WebForm.change(2)">
-            <input type="button" value="HTML" onclick = "WebForm.change(1)">
-        </div>
-
+        <input type="button" value="B" onclick = "WebForm.bold()"> 
+        <input type="button" value="U" onclick = "WebForm.underline()">
+        <input type="button" value="I" onclick = "WebForm.italic()">
+        <input type="button" value="Strike" onclick = "WebForm.strike()">
+       
+        <input type="button" value="Sub" onclick = "WebForm.subscript()">
+        <input type="button" value="Sup" onclick = "WebForm.superscript()">
+        
+        <input type="button" value="Text Size" onclick = "WebForm.fontSize()">
+        <input type="button" value="Text Color" onclick = "WebForm.foreColor()">
+        <input type="button" value="HR" onclick = "WebForm.horizontalRule()">
+        <input type="button" value="UL" onclick = "WebForm.unorderedList()">
+        <input type="button" value="OL" onclick = "WebForm.orderedList()">
+        <input type="button" value="Remove format" onclick = "WebForm.removeFormat()">
+        <input type="button" value="Link" onclick = "WebForm.link()">
+        <input type="button" value="UnLink" onclick = "WebForm.unLink()">
+        <input type="button" value="Image" onclick = "WebForm.image()">
+        <br>
+        <input type="button" value="Center" onclick = "WebForm.justifyCenter()">
+        <input type="button" value="Left" onclick = "WebForm.justifyLeft()">
+        <input type="button" value="Right" onclick = "WebForm.justifyRight()">
+        <br>
+        <input type="button" value="H1" onclick = "WebForm.h(1)">
+        <input type="button" value="H2" onclick = "WebForm.h(2)">
+        <input type="button" value="H3" onclick = "WebForm.h(3)">
+        <input type="button" value="H4" onclick = "WebForm.h(4)">
+        <input type="button" value="H5" onclick = "WebForm.h(5)">
+        <input type="button" value="H6" onclick = "WebForm.h(6)">
+        <br>
+        <input type="button" value="Text" onclick = "WebForm.change(2)">
+        <input type="button" value="HTML" onclick = "WebForm.change(1)">
+        <br>
+    
         <textarea style="display:none;" name="myTextArea" id="myTextArea"></textarea>
         <iframe name="richTextField" id="richTextField" style="border:#000000 1px solid; width:700px; height:300px;"></iframe>
 
-
     </form>
-<script>WebForm.init("#web_form_cont", "#richTextField", "#myTextArea");</script>
+
 </body>
 </html>
