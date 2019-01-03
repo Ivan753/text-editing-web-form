@@ -4,15 +4,13 @@
 
 WebForm = {
     
-    container: null,        // containing form
     richTextField: null,    // iframe
     iframe_id: null,        // iframe id
     textArea: null,         // textarea
     
     // arguments: id name id
-    init: function(cont, iframe_id, ta){
+    init: function(iframe_id, ta){
         
-        this.container = document.querySelector(cont);
         this.iframe_id = document.querySelector(iframe_id);
         
         
@@ -145,5 +143,5 @@ WebForm = {
 })();
 
 window.onload = function(){
-    WebForm.init("#web_form_cont", "#richTextField", "#myTextArea");
+    WebForm.init("#richTextField", "#myTextArea");
 }
